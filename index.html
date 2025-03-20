@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scratch and Win</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        canvas {
+            position: absolute;
+            top: 50%;
+            left: 8%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Scratch and Win!</h2>
+
+    <!-- 1st -->
+    <div style="position: relative;">
+        <img id="prizeImage" src="https://ex-coders.com/html/niotech/assets/images/about/aboutThumb1_1.png" width="300"
+            height="200" style="display: block;">
+        <canvas id="scratchCanvas" width="300" height="200"></canvas>
+    </div>
+
+    <br><br>
+    <!-- ==== 2nd == -->
+    <div style="position: relative;">
+        <img id="prizeImage" src="https://ex-coders.com/html/niotech/assets/images/about/aboutThumb1_1.png" width="300"
+            height="200" style="display: block;">
+        <canvas id="scratchCanvas2" width="300" height="200"></canvas>
+    </div>
+
+
+    <br><br>
+
+
+
+
+    <!-- 1st -->
+    <script>
+        let canvas = document.getElementById("scratchCanvas");
+        let ctx = canvas.getContext("2d");
+        let isScratching = false;
+
+        // Fill canvas with a gray overlay
+        ctx.fillStyle = "#888";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Scratch effect
+        function scratch(e) {
+            if (!isScratching) return;
+            let x = e.offsetX, y = e.offsetY;
+            ctx.globalCompositeOperation = "destination-out";
+            ctx.beginPath();
+            ctx.arc(x, y, 20, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Start scratching
+        canvas.addEventListener("mousedown", () => isScratching = true);
+        canvas.addEventListener("mouseup", () => isScratching = false);
+        canvas.addEventListener("mousemove", scratch);
+    </script>
+    <!--End  1st -->
+
+        <!-- 2nd -->
+    <script>
+        let canvas2 = document.getElementById("scratchCanvas2");
+        let ctx2 = canvas2.getContext("2d");
+        let isScratching2 = false;
+
+        // Fill canvas with a gray overlay
+        ctx2.fillStyle = "#888";
+        ctx2.fillRect(0, 0, canvas2.width, canvas2.height);
+
+        // Scratch effect
+        function scratch(e) {
+            if (!isScratching2) return;
+            let x = e.offsetX, y = e.offsetY;
+            ctx2.globalCompositeOperation = "destination-out";
+            ctx2.beginPath();
+            ctx2.arc(x, y, 20, 0, Math.PI * 2);
+            ctx2.fill();
+        }
+
+        // Start scratching
+        canvas2.addEventListener("mousedown", () => isScratching2 = true);
+        canvas2.addEventListener("mouseup", () => isScratching2 = false);
+        canvas2.addEventListener("mousemove", scratch);
+    </script>
+    
+</body>
+
+</html>
